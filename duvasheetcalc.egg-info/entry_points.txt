@@ -1,0 +1,3 @@
+[console_scripts]
+duvasheetcalc = duvasheetcalc.endpoints:calc_sheet
+
