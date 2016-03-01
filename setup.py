@@ -4,7 +4,7 @@ import setuptools
 
 setup(
         name='duvasheetcalc',
-        version='2.0',
+        version='2.9',
         install_requires=[
             'openpyxl'
             ],

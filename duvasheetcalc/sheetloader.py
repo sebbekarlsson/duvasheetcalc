@@ -1,6 +1,8 @@
 from openpyxl import load_workbook
 from duvasheetcalc.sheetcalculator import SheetCalculator
 from duvasheetcalc.calcsaver import CalcSaver
+from duvasheetcalc.utils import clean_days
+
 
 class SheetLoader(object):
 
@@ -9,15 +11,6 @@ class SheetLoader(object):
         self.saver = CalcSaver()
         self.height = 31
         self.letters = ['A', 'B', 'C', 'D']
-
-
-    def clean_days(self, days):
-        new_days = []
-        for day in days:
-            if day['interval'] is not None:
-                new_days.append(day)
-
-        return new_days
 
 
     def load(self, filename, output):
@@ -34,7 +27,8 @@ class SheetLoader(object):
                 cell = ws[coords]
 
                 if char == 'A':
-                    day['date'] = cell.value
+                    if cell.value is not None:
+                        day['date'] = cell.value.strftime("%d-%B-%Y")
                 elif char == 'B':
                     day['interval'] = cell.value
                 elif char == 'C':
@@ -45,7 +39,7 @@ class SheetLoader(object):
             days.append(day)
             i+=1
 
-        days = self.clean_days(days)
-        calculated_days = self.calculator.calculate(days)
+        days = clean_days(days)
+        calculations = self.calculator.calculate(days)
 
-        return self.saver.save(days, output)
+        return self.saver.save(calculations, output)
