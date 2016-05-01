@@ -9,7 +9,7 @@ class SheetLoader(object):
     def __init__(self):
         self.calculator = SheetCalculator()
         self.saver = CalcSaver()
-        self.height = 31
+        self.height = 31*31
         self.letters = ['A', 'B', 'C', 'D']
 
 

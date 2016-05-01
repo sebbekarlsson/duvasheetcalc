@@ -2,3 +2,7 @@
 *.swo
 *egg*
 *cache*
+./files
+files/
+./venv
+venv/
