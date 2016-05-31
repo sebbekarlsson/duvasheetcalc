@@ -37,8 +37,10 @@ class SheetCalculator(object):
                 diff += self.calculate_diff(start_time, end_time)
 
 
-            day['hours'] = diff
-            total_hours += diff
+            day['hours'] = (diff-4)
+	    
+            if diff-4 > 0:
+                total_hours += (diff-4)
 
             new_days.append(day)
             

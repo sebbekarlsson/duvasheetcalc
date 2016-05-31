@@ -6,3 +6,4 @@
 files/
 ./venv
 venv/
+*.txt
